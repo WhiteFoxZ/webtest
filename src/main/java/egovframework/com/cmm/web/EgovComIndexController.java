@@ -89,6 +89,8 @@ public class EgovComIndexController implements ApplicationContextAware, Initiali
 
 	@RequestMapping("/EgovContent.do")
 	public String setContent(ModelMap model) throws Exception {
+		
+		LOGGER.debug("EgovContent ModelMap : "+model.toString());
 
 		// 설정된 비밀번호 유효기간을 가져온다. ex) 180이면 비밀번호 변경후 만료일이 앞으로 180일 
 		String propertyExpirePwdDay = EgovProperties.getProperty("Globals.ExpirePwdDay");
@@ -98,6 +100,9 @@ public class EgovComIndexController implements ApplicationContextAware, Initiali
 		} catch (Exception e) {
 			LOGGER.debug("convert expirePwdDay Err : "+e.getMessage());
 		}
+		
+		LOGGER.debug("유효기간을 expirePwdDay : "+expirePwdDay);
+
 		
 		model.addAttribute("expirePwdDay", expirePwdDay);
 
